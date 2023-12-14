@@ -83,10 +83,10 @@ import Portkey from "portkey-ai";
 import { CompletionsBodyStreaming } from 'portkey-ai/apis/completions';
 
 const portkey = new Portkey({
-  /*****************************/
-  apiKey: process.env.PORTKEY_API_KEY, // Get from https://app.portkey.ai/
-  Authorization: process.env.OPENAI_API_KEY, 
-  provider: 'openai'
+  apiKey: process.env.PORTKEY_API_KEY,       // Get from https://app.portkey.ai/
+  /*****************************/  
+  provider: 'openai'                         // Change to 'azure-openai', 'anthropic', 'google-palm', 'anyscale' etc.
+  Authorization: process.env.OPENAI_API_KEY, // Pass the Bearer auth key for the chosen provider
   /*****************************/
 });
 
@@ -114,6 +114,7 @@ export async function POST(req: Request): Promise<Response> {
 }
 ```
 
+Check out the [Portkey docs](https://portkey.ai/docs/welcome/integration-guides) to learn how to connect other LLMs and use more Portkey feautres like caching, tagging, tracing, and more.
 
 #### Manually specified endpoint: flask (python)
 
