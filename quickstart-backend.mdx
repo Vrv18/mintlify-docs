@@ -11,7 +11,7 @@ description: 'How to setup the CopilotCloud endpoints'
   See below for examples using NextJS edge functions / Flask.
 
 
-#### Manually specified endpoint: nodeJS (typescript): OpenAI
+#### Manually specified endpoint: nodeJS (typescript)
 
 Make sure to install the `ai` and `openai` packages:
 <CodeGroup>
@@ -59,7 +59,10 @@ export async function POST(req: Request): Promise<Response> {
 }
 ```
 
-#### Manually specified endpoint: nodeJS (typescript): Portkey AI Gateway
+#### Portkey endpoint for connecting to 20+ LLMs: nodeJS (typescript)
+
+[Portkey](https://portkey.ai/) serves as a unified gateway to access over 20 LLMs, such as OpenAI, Azure OpenAI, Anthropic, Google, and more. 
+It also enhances your app's reliability with features like load balancing various models or keys, triggering automated fallbacks in case of failures, and more.
 
 Make sure to install the `ai` and `portkey-ai` packages:
 <CodeGroup>
@@ -77,11 +80,11 @@ Make sure to install the `ai` and `portkey-ai` packages:
 ```ts /api/copilotkit/chat/route.ts (NextJS)
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import Portkey from "portkey-ai";
-import { CompletionCreateParamsStreaming } from "openai/resources/chat/completions";
+import { CompletionsBodyStreaming } from 'portkey-ai/apis/completions';
 
 const portkey = new Portkey({
-  apiKey: process.env.PORTKEY_API_KEY, // Get from https://app.portkey.ai/
   /*****************************/
+  apiKey: process.env.PORTKEY_API_KEY, // Get from https://app.portkey.ai/
   Authorization: process.env.OPENAI_API_KEY, 
   provider: 'openai'
   /*****************************/
